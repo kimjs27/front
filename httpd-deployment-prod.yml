@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: httpd-deployment-prod
+ namespace: prod
+spec:
+ selector:
+   matchLabels:
+    type: front
+ replicas: 1
+ template:
+   metadata:
+     labels:
+       type: front
+   spec:
+    containers:
+    - name: front
+      image: mnstv/front:latest
+      ports:
+      - containerPort: 80
